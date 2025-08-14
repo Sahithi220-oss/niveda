@@ -202,6 +202,29 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(showNextSlide, 3000); // Auto-slide every 3 seconds
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const optionsWrapper = document.querySelector('.options-wrapper');
+    const titleElement = document.getElementById('dynamic-title');
+    
+    // Store the initial title text
+    const defaultTitle = titleElement.textContent;
+
+    // Add mouseenter event listeners to each option
+    document.querySelectorAll('.option-item').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            // Get the title from the data-title attribute
+            const newTitle = item.getAttribute('data-title');
+            titleElement.textContent = newTitle;
+        });
+    });
+
+    // Add a mouseleave event to the parent container
+    optionsWrapper.addEventListener('mouseleave', () => {
+        // Reset the title to the default when the mouse leaves the entire area
+        titleElement.textContent = defaultTitle;
+    });
+});
+
 
 
 const feedback = [
